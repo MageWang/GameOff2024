@@ -4,7 +4,7 @@ Game Off is an annual game jam challenging individuals and teams to build a game
 
 This year's Game Off theme is SECRETS.
 
-## Contributers (alphabetical order):
+## Contributors (alphabetical order):
 
 - B̴̃̇l̶̀̈́u̵̙͗
 - bing
