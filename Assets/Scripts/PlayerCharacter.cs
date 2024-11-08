@@ -28,14 +28,14 @@ namespace IndieMarc.TopDown
         public UnityAction onDeath;
         public UnityAction onHit;
 
-        private Rigidbody2D rigid;
+        private Rigidbody rigid;
         private Animator animator;
         private AutoOrderLayer auto_order;
         private ContactFilter2D contact_filter;
 
         private float hp;
         private bool is_dead = false;
-        private Vector2 move;
+        private Vector3 move;
         private Vector2 move_input;
         private Vector2 lookat = Vector2.zero;
         private float side = 1f;
@@ -47,7 +47,7 @@ namespace IndieMarc.TopDown
         void Awake()
         {
             character_list[player_id] = this;
-            rigid = GetComponent<Rigidbody2D>();
+            rigid = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
             auto_order = GetComponent<AutoOrderLayer>();
             hp = max_hp;
@@ -72,7 +72,7 @@ namespace IndieMarc.TopDown
             move.x = Mathf.MoveTowards(move.x, desiredSpeedX, accelerationX * Time.fixedDeltaTime);
             float desiredSpeedY = Mathf.Abs(move_input.y) > 0.1f ? move_input.y * move_max : 0f;
             float accelerationY = Mathf.Abs(move_input.y) > 0.1f ? move_accel : move_deccel;
-            move.y = Mathf.MoveTowards(move.y, desiredSpeedY, accelerationY * Time.fixedDeltaTime);
+            move.z = Mathf.MoveTowards(move.z, desiredSpeedY, accelerationY * Time.fixedDeltaTime);
 
             //Move
             rigid.linearVelocity = move;
@@ -147,12 +147,12 @@ namespace IndieMarc.TopDown
         public void Teleport(Vector3 pos)
         {
             transform.position = pos;
-            move = Vector2.zero;
+            move = Vector3.zero;
         }
 
         public Vector2 GetMove()
         {
-            return move;
+            return new Vector2(move.x, move.z);
         }
 
         public Vector2 GetFacing()

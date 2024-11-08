@@ -15,12 +15,12 @@ public class Ally : MonoBehaviour
     }
 
     // collision is called when the Collider other enters the trigger
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             //Destroy(other.gameObject);
-            Debug.Log("Player has entered the trigger 2d");
+            Debug.Log("Player has entered the trigger");
             other.gameObject.GetComponent<MC>().Grow();
             Destroy(gameObject);
         }
