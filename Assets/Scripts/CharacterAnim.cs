@@ -26,7 +26,6 @@ namespace IndieMarc.TopDown
             if(character_item != null)
                 animator.SetBool("Hold", character_item.GetHeldItem() != null);
         }
-        
     }
 
 }
