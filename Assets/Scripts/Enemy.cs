@@ -1,16 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using System;
 
 public class Enemy : MonoBehaviour
 {
-    public float sizeToDestroy = 0.5f;
+    public float sizeToEscape = 0.5f;
     public Transform [] targets;
     public int targetIndex = -1;
     private GameplayManager gameplayManager;
     private NavMeshAgent navMeshAgent;
-
+    public Vector3 faceAt;
+    private MC mc;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public enum EnemyState
+    {
+        ESCAPE,
+        PATROL,
+        CHASE,
+    }
+
+    public EnemyState State  = EnemyState.PATROL;
+    public float escapeCountdown = 3.0f;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -31,21 +43,43 @@ public class Enemy : MonoBehaviour
         {
             navMeshAgent.SetDestination(targets[targetIndex].position);
         }
+        mc = GameObject.Find("MC").GetComponent<MC>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (targetIndex == -1)
+        if (State == EnemyState.PATROL)
         {
-            return;
+            if (targetIndex == -1)
+            {
+                return;
+            }
+            Transform target = targets[targetIndex];
+            if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(target.position.x, 0, target.position.z)) < 0.1f)
+            {
+                targetIndex = (targetIndex + 1) % targets.Length;
+                target = targets[targetIndex];
+                navMeshAgent.SetDestination(target.position);
+            }
         }
-        Transform target = targets[targetIndex];
-        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(target.position.x, 0, target.position.z)) < 0.1f)
+        if (State == EnemyState.CHASE)
         {
-            targetIndex = (targetIndex + 1) % targets.Length;
-            target = targets[targetIndex];
-            navMeshAgent.SetDestination(target.position);
+            navMeshAgent.SetDestination(mc.transform.position);
+        }
+        if (State == EnemyState.ESCAPE)
+        {
+            // escape from player
+            navMeshAgent.SetDestination(transform.position + (transform.position - mc.transform.position).normalized * 10);
+            escapeCountdown -= Time.deltaTime;
+            if (escapeCountdown < 0)
+            {
+                GameObject.Destroy(gameObject);
+            }
+        }
+        if (navMeshAgent.velocity.magnitude > 0.01f)
+        {
+            faceAt = navMeshAgent.velocity.normalized;
         }
     }
 
@@ -55,9 +89,9 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player has entered the trigger 2d " + gameObject.name);
-            if (other.gameObject.GetComponent<Transform>().localScale.x > sizeToDestroy)
+            if (other.gameObject.GetComponent<Transform>().localScale.x > sizeToEscape)
             {
-                GameObject.Destroy(gameObject);
+                //GameObject.Destroy(gameObject);
             }
             else
             {
@@ -71,9 +105,9 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log(other.gameObject.name + " has entered the trigger " + gameObject.name);
-            if (other.gameObject.GetComponent<Transform>().localScale.x > sizeToDestroy)
+            if (other.gameObject.GetComponent<Transform>().localScale.x > sizeToEscape)
             {
-                GameObject.Destroy(gameObject);
+                //GameObject.Destroy(gameObject);
             }
             else
             {
