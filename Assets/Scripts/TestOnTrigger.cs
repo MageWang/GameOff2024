@@ -17,7 +17,7 @@ public class TestOnTrigger : MonoBehaviour
     // collision is called when the Collider other enters the trigger
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(gameObject.name + " OnTriggerEnter " + other.gameObject.name);
+        // Debug.Log(gameObject.name + " OnTriggerEnter " + other.gameObject.name);
         // stop other trigger events
     }
 }

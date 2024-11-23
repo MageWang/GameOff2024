@@ -10,11 +10,19 @@ public class GameplayManager : MonoBehaviour
         Lose
     }
     GameState gameState = GameState.Playing;
-
+    float startTime = 0;
+    float timeElapsed
+    {
+        get
+        {
+            return Time.time - startTime;
+        }
+    }
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -30,7 +38,6 @@ public class GameplayManager : MonoBehaviour
 
     public void EnemyDestroyed()
     {
-        
         enemyCount--;
         Debug.Log("Enemy destroyed. Remaining enemies: " + enemyCount);
         if (enemyCount <= 0)
