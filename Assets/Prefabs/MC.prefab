@@ -227,7 +227,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &733754877451305367
 CapsuleCollider:
@@ -339,7 +339,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 73289312bd5fe8d459fcd1e8803113ba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -361,7 +361,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300030, guid: 006af9e18b9c35b49a7e2bc955181b4a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1751356, g: 0.5188679, b: 0.12971698, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
