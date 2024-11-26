@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wall
-  m_Shader: {fileID: 4800000, guid: 1b17e2b3936490f4294522a1b1784702, type: 3}
+  m_Shader: {fileID: 4800000, guid: 72437c05b44d071499d682a9482be40a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -88,6 +88,10 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 0.29803923, g: 0.3019608, b: 0.31764707, a: 1}
+    - _Color2: {r: 0.8862745, g: 0.8862745, b: 0.94509804, a: 1}
+    - _Color3: {r: 0.8784314, g: 0.42745098, b: 0.42745098, a: 1}
+    - _Color4: {r: 0.5647059, g: 0.5803922, b: 0.5921569, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
