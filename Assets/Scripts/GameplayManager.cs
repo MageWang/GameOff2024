@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-    int enemyCount = 0;
+    public int enemyCount = 0;
     enum GameState
     {
         Playing,
@@ -56,6 +56,7 @@ public class GameplayManager : MonoBehaviour
         gameState = GameState.Win;
         Debug.Log("You win!");
         // goto happy end. unity loads the scene with the name "GoodEnding0010"
+        ScoreRecord.instance.Save(timeElapsed, enemyCount);
         UnityEngine.SceneManagement.SceneManager.LoadScene("GoodEnding0010");
     }
 
@@ -68,6 +69,7 @@ public class GameplayManager : MonoBehaviour
         
         gameState = GameState.Lose;
         Debug.Log("You lose!");
+        ScoreRecord.instance.Save(timeElapsed, enemyCount);
         UnityEngine.SceneManagement.SceneManager.LoadScene("BadEnding0010");
     }
 }
