@@ -10,7 +10,13 @@ public class ScoreRecord : MonoBehaviour
         public bool win = false;
     }
 
-    public Record[] records = new Record[10];
+    public class Records
+    {
+        public Record[] records = new Record[10];
+    }
+
+    private Records records = new Records();
+    
     static public ScoreRecord instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +40,7 @@ public class ScoreRecord : MonoBehaviour
 
     public void Save(float time, int enemiesNum)
     {
+        Debug.Log("Save record: " + time + " " + enemiesNum);
         Record record = new Record();
         record.time = time;
         record.win = enemiesNum == 0;
@@ -47,12 +54,13 @@ public class ScoreRecord : MonoBehaviour
         }
 
         // sort
-        for (int i = 0; i < records.Length; i++)
+        for (int i = 0; i < records.records.Length; i++)
         {
-            if (record.score > records[i].score)
+            Debug.Log("Record: " + JsonUtility.ToJson(records.records[i]));
+            if (record.score > records.records[i].score)
             {
-                Record temp = records[i];
-                records[i] = record;
+                Record temp = records.records[i];
+                records.records[i] = record;
                 record = temp;
             }
         }
@@ -66,7 +74,28 @@ public class ScoreRecord : MonoBehaviour
         string json = PlayerPrefs.GetString("records");
         if (json != "")
         {
-            records = JsonUtility.FromJson<Record[]>(json);
+            try
+            {
+                records = JsonUtility.FromJson<Records>(json);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("Error loading records: " + e.Message);
+            }
+            finally
+            {
+                if (records == null)
+                {
+                    records = new Records();
+                }
+            }
+            for (int i = 0; i < records.records.Length; i++)
+            {
+                if (records.records[i] == null)
+                {
+                    records.records[i] = new Record();
+                }
+            }
         }
     }
 }

@@ -614,10 +614,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1254068773163174, guid: a934d05842413204bb4f464a15b84f4d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1378692596590864, guid: a934d05842413204bb4f464a15b84f4d, type: 3}
       propertyPath: m_Name
       value: MC
@@ -662,26 +658,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2713201552715753540, guid: a934d05842413204bb4f464a15b84f4d,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713201552715753540, guid: a934d05842413204bb4f464a15b84f4d,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713201552715753540, guid: a934d05842413204bb4f464a15b84f4d,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713201552715753540, guid: a934d05842413204bb4f464a15b84f4d,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 3f441824b28dacb4ca87ad822d87cbd8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2185,37 +2161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dcf5a1ba9bdda499e90f36dc547de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  records:
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
-  - score: 0
-    time: 999999
-    win: 0
 --- !u!1001 &658627586
 PrefabInstance:
   m_ObjectHideFlags: 0
