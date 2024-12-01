@@ -1,6 +1,6 @@
 # Secret Silverfish Society 
 
-![](https://github.com/MageWang/GameOff2024/blob/main/Assets/Images/menu.png?raw=true)
+![https://github.com/MageWang/GameOff2024/blob/main/Assets/Images/menu.png?raw=true](https://github.com/MageWang/GameOff2024/blob/main/Assets/Images/00001.JPG?raw=true)
 
 # Game Off 2024 project.
 
