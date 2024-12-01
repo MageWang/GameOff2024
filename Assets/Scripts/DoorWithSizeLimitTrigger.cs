@@ -4,7 +4,8 @@ public class DoorWithSizeLimitTrigger : MonoBehaviour
 {
     public float limitSizeMin = 1;
     public float limitSizeMax = 1.1f;
-    public SpriteRenderer spriteRenderer;
+    public Renderer renderer;
+    
     public Color colorPass;
     public Color colorCantPass;
     private Color colorDefault;
@@ -17,7 +18,6 @@ public class DoorWithSizeLimitTrigger : MonoBehaviour
     void Start()
     {
         mC = GameObject.FindGameObjectWithTag("Player").GetComponent<MC>();
-        colorDefault = spriteRenderer.color;
         foreach (GameObject hideObject in hideObjects)
         {
             hideObject.SetActive(false);
@@ -37,8 +37,10 @@ public class DoorWithSizeLimitTrigger : MonoBehaviour
             {
                 Debug.Log("can pass " + other.gameObject.name);
                 targetCollider.enabled = false;
-                spriteRenderer.color = colorPass;
-                spriteRenderer.gameObject.SetActive(false);
+                if (renderer != null)
+                {
+                    renderer.gameObject.SetActive(false);
+                }
                 foreach (GameObject hideObject in hideObjects)
                 {
                     hideObject.SetActive(true);
@@ -49,7 +51,7 @@ public class DoorWithSizeLimitTrigger : MonoBehaviour
             {
                 Debug.Log("can't pass " + other.gameObject.name);
                 targetCollider.enabled = true;
-                spriteRenderer.color = colorCantPass;
+                // if (renderer != null) renderer.color = colorCantPass;
             }
         }
     }

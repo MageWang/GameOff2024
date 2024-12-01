@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     public Vector3 faceAt;
     private MC mc;
+    public SpriteRenderer[] spriteRenderers;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public enum EnemyState
     {
@@ -28,6 +29,8 @@ public class Enemy : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         gameplayManager =  GameObject.Find("Managers").GetComponent<GameplayManager>();
         gameplayManager.EnemySpawned();
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        
         // get nearest target
         float minDistance = float.MaxValue;
         for (int i = 0; i < targets.Length; i++)
@@ -81,6 +84,15 @@ public class Enemy : MonoBehaviour
         {
             faceAt = navMeshAgent.velocity.normalized;
         }
+        if (mc.transform.localScale.x > sizeToEscape)
+        {
+            // change render color
+            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.color = Color.white;
+            }
+        }
+        
     }
 
     // collision is called when the Collider2d other enters the trigger

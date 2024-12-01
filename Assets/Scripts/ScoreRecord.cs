@@ -16,6 +16,10 @@ public class ScoreRecord : MonoBehaviour
     }
 
     private Records records = new Records();
+    public Records GetRecords()
+    {
+        return records;
+    }
     
     static public ScoreRecord instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,6 +44,7 @@ public class ScoreRecord : MonoBehaviour
 
     public void Save(float time, int enemiesNum)
     {
+        if (time < 0.0001) return;
         Debug.Log("Save record: " + time + " " + enemiesNum);
         Record record = new Record();
         record.time = time;
@@ -56,7 +61,7 @@ public class ScoreRecord : MonoBehaviour
         // sort
         for (int i = 0; i < records.records.Length; i++)
         {
-            Debug.Log("Record: " + JsonUtility.ToJson(records.records[i]));
+            // Debug.Log("Record: " + JsonUtility.ToJson(records.records[i]));
             if (record.score > records.records[i].score)
             {
                 Record temp = records.records[i];

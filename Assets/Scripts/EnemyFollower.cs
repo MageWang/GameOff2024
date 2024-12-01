@@ -18,6 +18,10 @@ public class EnemyFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform == null || target == null || enemy == null)
+        {
+            return;
+        }
         transform.position = target.position + enemy.faceAt * relativePosition.magnitude;
     }
 
